@@ -24,3 +24,13 @@ def test_string_calc_should_add_two_numbers():
 
     result = add("5,10")
     assert result == 15, "String calculater should return 15 for \"5,10\" string"
+
+def test_string_calc_should_allow_new_line_character_between_numbers_as_delimiter():
+    result = add("5\n10")
+    assert result == 15, "String calculater should return 15 for \"\\n5,10\" string"
+
+    result = add("1\n2,3")
+    assert result == 6, "String calculater should return 15 for \"1\\n2,3\" string"
+
+    result = add("\n4,2\n3\n")
+    assert result == 9, "String calculater should return 15 for \"1\\n2,3\" string"

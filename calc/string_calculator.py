@@ -4,5 +4,7 @@ def add(param: str) -> int:
     elif len(param) == 1:
         return int(param)
     else:
+        if "\n" in param:
+            param = param.replace("\n", ",").strip(',')
         numbers_list = map(int, param.split(","))
         return sum(numbers_list)
