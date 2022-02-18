@@ -1,3 +1,4 @@
+from unittest import result
 from calc.string_calculator import add
 
 # TDD CYCLE
@@ -16,3 +17,10 @@ def test_string_calc_should_return_correct_value_on_one():
 def test_string_calc_should_return_correct_value_on_two():
     result = add("2")
     assert result == 2, "String calculater should return 2 on \"2\" string"
+
+def test_string_calc_should_add_two_numbers():
+    result = add("1,2")
+    assert result == 3, "String calculater should return 3 for \"1,2\" string"
+
+    result = add("5,10")
+    assert result == 15, "String calculater should return 15 for \"5,10\" string"
