@@ -41,3 +41,10 @@ def test_string_calc_should_allow_to_add_custom_delimiter():
 
     result = add("//#\n4#2#7")
     assert result == 13, "String calculater should return 13 for \"//#\\n4#2#7\" string"  
+
+def test_string_calc_negative_number_exception_check():
+    try:
+        result = add("1\n-2,3")
+    except ValueError as e:
+        print(e)
+        assert str(e) == "negatives not allowed [-2]"

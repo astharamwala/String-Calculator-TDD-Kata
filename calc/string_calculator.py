@@ -12,7 +12,12 @@ def normalize_delimiters(param: str) -> str:
 
 def add_numbers(param: str) -> int:
     numbers = list(map(int, param.split(",")))
+    validate_numbers(numbers)
     return sum(numbers)
+
+def validate_numbers(param: str):
+    if any(num < 0 for num in param):
+        raise ValueError("negatives not allowed " + str([num for num in param if num < 0]))
 
 def normalize_custom_delimiter(param: str) -> str:
     if param.startswith("//"):
