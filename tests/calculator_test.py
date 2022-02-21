@@ -1,4 +1,3 @@
-from unittest import result
 from calc.string_calculator import add
 
 # TDD CYCLE
@@ -44,9 +43,8 @@ def test_string_calc_should_allow_to_add_custom_delimiter():
 
 def test_string_calc_negative_number_exception_check():
     try:
-        result = add("1\n-2,3")
+        add("1\n-2,3")
     except ValueError as e:
-        print(e)
         assert str(e) == "negatives not allowed [-2]"
 
 def test_string_calc_should_allow_to_add_custom_delimiter_for_multiple_chars():
