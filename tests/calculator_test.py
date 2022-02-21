@@ -30,7 +30,14 @@ def test_string_calc_should_allow_new_line_character_between_numbers_as_delimite
     assert result == 15, "String calculater should return 15 for \"\\n5,10\" string"
 
     result = add("1\n2,3")
-    assert result == 6, "String calculater should return 15 for \"1\\n2,3\" string"
+    assert result == 6, "String calculater should return 6 for \"1\\n2,3\" string"
 
     result = add("\n4,2\n3\n")
-    assert result == 9, "String calculater should return 15 for \"1\\n2,3\" string"
+    assert result == 9, "String calculater should return 9 for \"\\n4,2\\n3\\n\" string"
+
+def test_string_calc_should_allow_to_add_custom_delimiter():
+    result = add("//;\n1;2")
+    assert result == 3, "String calculater should return 3 for \"//;\\n1;2\" string"
+
+    result = add("//#\n4#2#7")
+    assert result == 13, "String calculater should return 13 for \"//#\\n4#2#7\" string"  

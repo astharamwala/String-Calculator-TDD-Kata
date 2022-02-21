@@ -1,10 +1,21 @@
 def add(param: str) -> int:
-    if len(param) == 0:
-        return 0
-    elif len(param) == 1:
-        return int(param)
+    param = normalize_delimiters(param)
+    if param:
+        result = add_numbers(param)
+        return result
     else:
-        if "\n" in param:
-            param = param.replace("\n", ",").strip(',')
-        numbers_list = map(int, param.split(","))
-        return sum(numbers_list)
+        return len(param)
+
+def normalize_delimiters(param: str) -> str:
+    param = normalize_custom_delimiter(param)
+    return param.replace("\n", ",").strip(',')
+
+def add_numbers(param: str) -> int:
+    numbers = list(map(int, param.split(",")))
+    return sum(numbers)
+
+def normalize_custom_delimiter(param: str) -> str:
+    if param.startswith("//"):
+        delim = param[2]
+        param = param[3:].replace(delim, ",").strip(',')
+    return param
