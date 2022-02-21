@@ -21,6 +21,7 @@ def validate_numbers(param: str):
 
 def normalize_custom_delimiter(param: str) -> str:
     if param.startswith("//"):
-        delim = param[2]
-        param = param[3:].replace(delim, ",").strip(',')
+        delim, param = param.split('\n', 1)
+        delim = delim.lstrip('/')
+        param = param.replace(delim, ",").strip(',')
     return param

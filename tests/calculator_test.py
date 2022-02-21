@@ -48,3 +48,10 @@ def test_string_calc_negative_number_exception_check():
     except ValueError as e:
         print(e)
         assert str(e) == "negatives not allowed [-2]"
+
+def test_string_calc_should_allow_to_add_custom_delimiter_for_multiple_chars():
+    result = add("//;+-\n1;+-2")
+    assert result == 3, "String calculater should return 3 for \"//;\\n1;2\" string"
+
+    result = add("//#*o\n4#*o2#*o7")
+    assert result == 13, "String calculater should return 13 for \"//#\\n4#2#7\" string"  
