@@ -60,3 +60,10 @@ def test_string_calc_should_not_ignore_number_more_than_1000():
 
     result = add("//[++]\n1++5++9999")
     assert result == 6, "should have ignored number greater than 1000"
+
+def test_string_calc_should_accept_multiple_delim():
+    result = add("//[*][%]\n1*5%7")
+    assert result == 13, "should accept multiple delim"
+
+    result = add("//[#*o][**][%%]\n4#*o2**7%%2")
+    assert result == 15, "should accept multiple delims with multiple chars in delim"

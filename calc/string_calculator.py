@@ -39,6 +39,10 @@ def normalize_custom_delimiter(param: str) -> str:
     """
     if param.startswith("//"):
         delim, param = param.split('\n', 1)
-        delim = delim.lstrip('/').lstrip('[').rstrip(']')
-        param = param.replace(delim, ",").strip(',')
+
+        # fetch multiple delims
+        delims = delim.lstrip('/').split('][')
+        for delim in delims:
+            delim = delim.lstrip('[').rstrip(']')
+            param = param.replace(delim, ",").strip(',')
     return param
