@@ -48,8 +48,15 @@ def test_string_calc_negative_number_exception_check():
         assert str(e) == "negatives not allowed [-2]"
 
 def test_string_calc_should_allow_to_add_custom_delimiter_for_multiple_chars():
-    result = add("//;+-\n1;+-2")
+    result = add("//[;+-]\n1;+-2")
     assert result == 3, "String calculater should return 3 for \"//;\\n1;2\" string"
 
-    result = add("//#*o\n4#*o2#*o7")
-    assert result == 13, "String calculater should return 13 for \"//#\\n4#2#7\" string"  
+    result = add("//[#*o]\n4#*o2#*o7")
+    assert result == 13, "String calculater should return 13 for \"//#\\n4#2#7\" string" 
+
+def test_string_calc_should_not_ignore_number_more_than_1000():
+    result = add("2, 1002, 5")
+    assert result == 7, "should have ignored number greater than 1000"
+
+    result = add("//[++]\n1++5++9999")
+    assert result == 6, "should have ignored number greater than 1000"
